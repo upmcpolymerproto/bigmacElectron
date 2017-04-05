@@ -1,9 +1,9 @@
 {
   "name": "comit-electron",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Electron wrapper for ComitUI",
   "main": "main.js",
-  "devDependencies": {
-    "electron": "^1.4.15",
-    "electron-packager": "^8.5.1"
+  "scripts": {
+    "start": "electron main.js"
   }
 }
