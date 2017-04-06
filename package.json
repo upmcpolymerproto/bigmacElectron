@@ -6,5 +6,9 @@
   "scripts": {
     "start": "electron main.js"
   },
-  "dependencies" : { "electron": "latest" }
+  "dependencies": {
+    "electron": "latest",
+    "electron-window-state": "^4.1.0",
+    "jquery": "^3.2.1"
+  }
 }

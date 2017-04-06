@@ -1,18 +1,30 @@
 'use strict';
 
 const electron = require('electron');
+const windowStateKeeper = require('electron-window-state');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
 function createWindow () {
+
+  let windowState = windowStateKeeper({
+    defaultWidth: 1000,
+    defaultHeight: 800
+  });
+
   mainWindow = new BrowserWindow({
-	  'width': 1800, 
-	  'height': 900, 
-	  'webPreferences': {
-		  'nodeIntegration': false
-	  }
+	  'x': windowState.x, 
+	  'y': windowState.y, 
+    'width': windowState.width,
+    'height': windowState.height,
+    'frame': false,
+    'webPreferences': {
+      'nodeIntegration': true,
+      'webSecurity': false
+    }
 	});
+
   mainWindow.loadURL("http://localhost:8080");
 
   mainWindow.webContents.openDevTools();
@@ -21,6 +33,8 @@ function createWindow () {
     // Dereference the window object
     mainWindow = null;
   });
+
+  windowState.manage(mainWindow);
 }
 
 app.on('ready', createWindow);
