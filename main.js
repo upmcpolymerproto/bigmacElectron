@@ -9,8 +9,8 @@ let mainWindow;
 function createWindow () {
 
   let windowState = windowStateKeeper({
-    defaultWidth: 1000,
-    defaultHeight: 800
+    defaultWidth: 1600,
+    defaultHeight: 900
   });
 
   mainWindow = new BrowserWindow({
@@ -32,6 +32,28 @@ function createWindow () {
   mainWindow.on('closed', function() {
     // Dereference the window object
     mainWindow = null;
+  });
+
+  mainWindow.webContents.on('new-window', function(e, reqUrl) {
+    let getHost = url=>require('url').parse(url).host;
+    let reqHost = getHost(reqUrl);
+    let isExternal = reqHost && reqHost != getHost(mainWindow.webContents.getURL());
+    if(isExternal) {
+      e.preventDefault();
+      const remote = require('electron').remote;
+      var authWindow = new BrowserWindow({ 
+        'width': 800, 
+        'height': 600,
+        'frame': false,
+        'webPreferences': {
+          'nodeIntegration': false,
+          'webSecurity': false
+        }
+      });
+      authWindow.loadURL(reqUrl);
+      e.newGuest = authWindow;
+      authWindow.focus();
+    }
   });
 
   windowState.manage(mainWindow);
