@@ -35,6 +35,7 @@ function createWindow () {
   });
 
   mainWindow.webContents.on('new-window', function(e, reqUrl) {
+    console.log("Opening new window...");
     let getHost = url=>require('url').parse(url).host;
     let reqHost = getHost(reqUrl);
     let isExternal = reqHost && reqHost != getHost(mainWindow.webContents.getURL());
@@ -45,6 +46,8 @@ function createWindow () {
         'width': 800, 
         'height': 600,
         'frame': false,
+        'parent': mainWindow,
+        'modal': true,
         'webPreferences': {
           'nodeIntegration': false,
           'webSecurity': false
