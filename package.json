@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron main.js",
-    "pack": "electron-packager . CoMIT"
+    "pack": "electron-packager . CoMIT --icon=icon.ico"
   },
   "dependencies": {
     "electron": "latest",
