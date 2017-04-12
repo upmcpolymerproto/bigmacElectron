@@ -27,7 +27,7 @@ function createWindow () {
 
   mainWindow.loadURL("http://localhost:8080");
 
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', function() {
     // Dereference the window object
@@ -43,7 +43,7 @@ function createWindow () {
       e.preventDefault();
       const remote = require('electron').remote;
       var authWindow = new BrowserWindow({ 
-        'width': 800, 
+        'width': 1000, 
         'height': 600,
         'frame': false,
         'parent': mainWindow,
