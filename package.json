@@ -1,14 +1,18 @@
 {
   "name": "comit-electron",
   "version": "1.0.0",
-  "description": "Electron wrapper for ComitUI",
+  "description": "Electron wrapper and packager for ComitUI.",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "pack": "electron-packager . CoMIT"
   },
   "dependencies": {
     "electron": "latest",
     "electron-window-state": "^4.1.0",
     "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.6.0"
   }
 }
